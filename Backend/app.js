@@ -1,6 +1,8 @@
 import express, { urlencoded } from 'express';
 import {nanoid} from 'nanoid';
 
+import urlSchema from './src/models/shorturl.model.js'
+
 import dotenv from 'dotenv'
 dotenv.config('./.env')
 
@@ -21,9 +23,17 @@ app.use(express.urlencoded({extended:true}))
 app.post("/api/create", (req,res)=>{
 
     const {url} = req.body
-    console.log(url)
+    const shortUrl = nanoid(8)
+    const newUrl = new urlSchema({
+        full_url: url,
+        short_url: shortUrl
+    })
 
-    res.send(nanoid(6))
+    newUrl.save()
+
+    res.send({
+        message:"url shortened succefully"
+    })
 
 })
 
