@@ -60,4 +60,33 @@ router.get('/get-all', async function(req,res){
 
 })
 
+/**
+ * @Redirect ap/url/:code
+ */
+
+router.get('/:code', async function (req,res){
+
+    const {code} = req.params
+
+    const url = await urlModel.findOne({
+        shortCode: code
+    })
+
+    if(!url){
+
+        return res.status(400).json({
+            message:"No url found by this code"
+        })
+    
+    }
+
+    res.redirect(url.originalUrl)
+
+     await urlModel.findOneAndUpdate({
+        shortCode: code
+    },{
+        $inc: {clicks:1}
+    })
+})
+
 export default router
