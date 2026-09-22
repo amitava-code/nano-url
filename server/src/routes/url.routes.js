@@ -40,4 +40,24 @@ router.post('/', async function (req,res){
 
 })
 
+
+/**
+ * @GET api/url
+ */
+
+router.get('/get-all', async function(req,res){
+
+    const urls = await urlModel.find()
+
+    return res.status(200).json({
+        message:"URLs fetched successfully",
+        data:{
+            urls,
+        }
+    })
+
+
+
+})
+
 export default router
