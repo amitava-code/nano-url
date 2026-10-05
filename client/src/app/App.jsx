@@ -60,6 +60,20 @@ function App(){
   return (
     <main className='p-10 flex flex-col gap-4'> 
       <div  className='w-full max-w-4xl p-2'></div>
+      <input 
+
+      type='text'
+      placeholder='Enter Long URL'
+      value={inputValue}
+      className='border rounded w-full p-2'
+      onChange={(e) => {SetInputValue(e.target.value)}}
+      
+      ></input>
+      <button
+
+      className='rounded p-2 bg-orange-600 text-white cursor-pointer'
+      onClick={createShortUrl}
+      >Shorten</button>
       <div  className='w-full max-w-4xl p-2'></div>
       <div  className='w-full max-w-4xl p-2 flex flex-col gap-2'></div>
       {
