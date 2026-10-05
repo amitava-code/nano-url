@@ -48,6 +48,19 @@ function App(){
   }
 
 
+  async function createShortUrl(){
+
+    const response = await axios.post('http://localhost:5173/api/url',{
+      url: inputValue
+    })
+
+    setCurrentUrl({
+      originalUrl: response.data.data.originalUrl,
+      shortCode: response.data.data.shortCode
+    })
+  }
+
+
 
   useEffect(() => {
     fetchUrls()
