@@ -66,8 +66,9 @@ function App(){
         urls.map(url=>{
           return(
             <div className='border border-neutral-200 p-2 flex gap-8 justify-evenly'>
-              <p> {url.shortCode} </p>
+              <a href={`http://localhost:3000/api/url/${url.shortCode}`} target='_blank'> {url.shortCode} </a>
               <p className='truncate'> {url.originalUrl} </p>
+              <p>{url.clicks}</p>
               <div className='flex gap-2'></div>
               <button className='p-2 rounded bg-amber-600 text-white cursor-pointer'>COPY</button>
               <button className='p-2 rounded bg-amber-600 text-white cursor-pointer'>DELETE</button>
