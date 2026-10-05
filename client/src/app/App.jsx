@@ -29,6 +29,8 @@ function App(){
 
   async function fetchUrls(){
 
+    try{
+
     const response = await axios.get('http://localhost:5173/api/url/get-me')
 
     const responseData = response.data
@@ -36,6 +38,13 @@ function App(){
     SetUrls(responseData.data.urls)
 
     console.log(responseData)
+
+
+    } catch(err){
+      console.log( 'Failed to fetch URLs:',err)
+    }
+
+
   }
 
 
