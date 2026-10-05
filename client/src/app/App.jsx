@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 import './App.css'
+import { useEffect } from 'react'
 
 const dummyUrls = [
   {
@@ -23,6 +25,26 @@ function App(){
   const [urls, SetUrls ] = useState(dummyUrls)
   const [ inputValue, SetInputValue ] = useState("")
   const [ currentUrl, setCurrentUrl ] = useState(null)
+
+
+  async function fetchUrls(){
+
+    const response = await axios.get('http://localhost:5173/api/url/get-me')
+
+    const responseData = response.data
+
+    SetUrls(responseData.data.urls)
+
+    console.log(responseData)
+  }
+
+
+
+  useEffect(() => {
+    fetchUrls()
+  }, [])
+
+
 
 
 
